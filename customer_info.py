@@ -9,10 +9,10 @@ class ContactInfo:
         self.mailing_address = mailing_address
         self.is_active = is_active
 
-    def update_phone_number(self, new_number: str) -> None:
+    def _update_phone_number(self, new_number: str) -> None:
         self.phone_number = new_number
 
-    def update_email(self, new_email: str) -> None:
+    def _update_email(self, new_email: str) -> None:
         self.email = new_email
 
 
@@ -24,7 +24,7 @@ class Address:
         self.zip_code = zip_code
         self.country = country
 
-    def get_full_address(self) -> str:
+    def __get_full_address(self) -> str:
         return f"{self.street}, {self.city}, {self.state} {self.zip_code}, {self.country}"
     
 class PaymentInfo:
@@ -39,5 +39,5 @@ class PaymentInfo:
         if hasattr(self, field):
             setattr(self, field, value)
             
-    def add_billing_address(self, address):
+    def __add_billing_address(self, address):
         self.billing_address = address

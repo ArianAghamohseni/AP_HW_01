@@ -16,7 +16,7 @@ class review:
         else: 
             return 1
 
-    def cheating_test(self, rating, review_id):
+    def __cheating_test(self, rating):
         cheating_score = (rating > 80) * (rating / 100)
         return cheating_score
     
@@ -38,7 +38,7 @@ class product:
         final_price = self.price * (1 - self.discount / 100)
         return final_price
     
-    def total_revenue(self, quantity, get_price):
+    def total_revenue(self, quantity, get_price) -> float:
         total_revenue = quantity * get_price
         return total_revenue
     
@@ -78,13 +78,13 @@ class inventory:
         self.products = products
         self._capacity = capacity
 
-    def is_full(self, capacity, quantities) -> bool:
+    def _is_full(self, capacity, quantities) -> bool:
         if capacity > quantities:
             return 1
         else:
             return 0
         
-    def expand_possibility(self, capacity, expantion_price) -> bool:
+    def __expand_possibility(self, expantion_price) -> bool:
         total_revenue = product.total_revenue
         if total_revenue > expantion_price:
             return 1
@@ -99,7 +99,7 @@ class item:
         self.__price = price
         self._total_price = total_price
 
-    def get_discount(self, quantity, price, total_price) -> int:
+    def __get_discount(self, quantity, price, total_price) -> int:
         calculated_revenue = quantity * price
         discount = 1 - total_price / calculated_revenue
         return discount

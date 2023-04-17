@@ -26,11 +26,11 @@ class promotion:
         self.end_date = end_date
         self.days_off = days_off
 
-    def work_record(self, start_date, end_date) -> int:
+    def __work_record(self, start_date, end_date) -> int:
         duration = end_date - start_date
         return duration
     
-    def equal_oppertunities(self, days_off) -> bool:
+    def _equal_oppertunities(self, days_off) -> bool:
         if (days_off <= 5) & (promotion.work_record() >= 240):
             return 1
         else:
