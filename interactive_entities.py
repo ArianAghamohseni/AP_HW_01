@@ -14,19 +14,19 @@ class Person(ABC):
     def get_info(self) -> str:
         pass
 
-    def get_name(self) -> str:
+    def __get_name(self) -> str:
         return self.name
     
     def set_name(self, name: str) -> None:
         self.name = name
     
-    def get_age(self) -> int:
+    def __get_age(self) -> int:
         return self.age
     
     def set_age(self, age: int) -> None:
         self.age = age
     
-    def get_gender(self) -> str:
+    def __get_gender(self) -> str:
         return self.gender
     
     def set_gender(self, gender: str) -> None:
@@ -70,10 +70,10 @@ class Customer(Person):
         self.shipping_address = shipping_address
         self.orders = orders
 
-    def get_info(self) -> str:
+    def _get_info(self) -> str:
         return f"{self.name}, {self.get_age_group()}, Customer"
 
-    def place_order(self, order: str) -> None:
+    def _place_order(self, order: str) -> None:
         self.orders.append(order)
 
     def cancel_order(self, order_id: int) -> None:
@@ -97,7 +97,7 @@ class Vendor(Person):
         self.email = email
         self.products = products
 
-    def get_info(self) -> str:
+    def _get_info(self) -> str:
         return f"{self.name}, {self.get_age_group()}, Vendor"
 
     def add_product(self, product: str) -> None:
@@ -109,7 +109,7 @@ class Vendor(Person):
                 self.products.remove(product)
                 break
 
-    def update_product_price(self, product_id: int, new_price: float) -> None:
+    def __update_product_price(self, product_id: int, new_price: float) -> None:
         for product in self.products:
             if product.product_id == product_id:
                 product.update_price(new_price)
